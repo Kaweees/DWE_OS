@@ -1,12 +1,20 @@
-import MenuItem from '@mui/material/MenuItem'
-import Menu from '@mui/material/Menu'
-import IconButton from '@mui/material/IconButton'
-import WifiIcon from '@mui/icons-material/Wifi'
-import WifiLockIcon from '@mui/icons-material/WifiLock'
-import SignalWifi4Bar from '@mui/icons-material/SignalWifi4Bar'
 import { useState } from 'react'
-import { Button, Grid, Modal, TextField, Typography } from '@mui/material'
-import { Box } from '@mui/system'
+
+import {
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  Menu,
+  MenuItem,
+  Modal,
+  SignalWifi4Bar,
+  TextField,
+  Typography,
+  WifiIcon,
+  WifiLockIcon,
+} from './muiImports';
+
 import { LineBreak, networkConnect } from '../utils/utils'
 
 const modalStyle = {

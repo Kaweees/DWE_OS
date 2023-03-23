@@ -1,4 +1,4 @@
-import Grid from '@mui/material/Grid'
+import Grid from './muiImports'
 
 export default function DevicesContainer(props) {
   return (

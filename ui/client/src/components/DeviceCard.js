@@ -1,34 +1,22 @@
-import Warning from '@mui/icons-material/Warning'
-import Button from '@mui/material/Button'
-import TextField from '@mui/material/TextField'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import CardHeader from '@mui/material/CardHeader'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import FormGroup from '@mui/material/FormGroup'
-import Grid from '@mui/material/Grid'
-import Icon from '@mui/material/Icon'
-import Slider from '@mui/material/Slider'
-import Switch from '@mui/material/Switch'
-import Tooltip from '@mui/material/Tooltip'
-import Typography from '@mui/material/Typography'
-import MenuItem from '@mui/material/MenuItem'
-import Menu from '@mui/material/Menu'
-import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state'
-import Collapse from '@mui/material/Collapse'
+import { React, useState } from 'react'
 
-import IconButton from '@mui/material/IconButton'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp'
+import {
+  ArrowDropDownIcon, ArrowDropUpIcon,
+  bindTrigger, bindMenu, Button,
+  Card, CardContent, CardHeader, Collapse,
+  Divider, FormControlLabel, FormGroup,
+  Grid, Icon, IconButton,
+  Menu, MenuItem, PopupState,
+  Slider, Switch, TextField,
+  Tooltip, Typography, Warning
+} from './muiImports'
 
-import React, { useEffect, useState } from 'react'
 import {
   LineBreak,
   makeAsyncPostRequest,
   makePostRequest,
   useDidMountEffect
 } from '../utils/utils'
-import { Divider } from '@mui/material'
 
 function SupportingText(props) {
   return (
