@@ -1,4 +1,5 @@
 import * as React from 'react'
+
 import {
   Box, Brightness4Icon, Brightness7Icon,
   ChevronLeftIcon, Container, createTheme, CssBaseline,
@@ -21,14 +22,14 @@ import io from 'socket.io-client'
 const drawerWidth = 240
 
 const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: prop => prop !== 'open'
+  shouldForwardProp: prop => prop !== 'open'   // Setting a custom prop on the app bar component
 })(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(['width', 'margin'], {
+  zIndex: theme.zIndex.drawer + 1,   // Setting the z-index of the app bar to be above the drawer
+  transition: theme.transitions.create(['width', 'margin'], {   // Creating a transition effect for the app bar
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen
   }),
-  ...(open && {
+  ...(open && {   // If the drawer is open, update the width and margin of the app bar
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
@@ -38,19 +39,21 @@ const AppBar = styled(MuiAppBar, {
   })
 }))
 
+
+
 const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: prop => prop !== 'open'
+  shouldForwardProp: prop => prop !== 'open'   // Setting a custom prop on the drawer component
 })(({ theme, open }) => ({
-  '& .MuiDrawer-paper': {
+  '& .MuiDrawer-paper': {   // Styling the paper element inside the drawer
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
-    transition: theme.transitions.create('width', {
+    transition: theme.transitions.create('width', {   // Creating a transition effect for the drawer
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
     }),
     boxSizing: 'border-box',
-    ...(!open && {
+    ...(!open && {   // If the drawer is closed, update the width and margin of the paper element
       overflowX: 'hidden',
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
