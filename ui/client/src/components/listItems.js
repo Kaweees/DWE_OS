@@ -114,6 +114,5 @@ export const secondaryListItems = (
       </ListItemIcon>
       <ListItemText primary="Wired" />
     </ListItemButton>
-
   </React.Fragment>
 )
