@@ -1,12 +1,20 @@
-import MenuItem from '@mui/material/MenuItem'
-import Menu from '@mui/material/Menu'
-import IconButton from '@mui/material/IconButton'
-import WifiIcon from '@mui/icons-material/Wifi'
-import WifiLockIcon from '@mui/icons-material/WifiLock'
-import SignalWifi4Bar from '@mui/icons-material/SignalWifi4Bar'
-import React, { useLayoutEffect, useState } from 'react'
-import { Button, Grid, Modal, TextField, Typography } from '@mui/material'
-import { Box } from '@mui/system'
+import { useState } from 'react'
+
+import {
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  Menu,
+  MenuItem,
+  Modal,
+  SignalWifi4Bar,
+  TextField,
+  Typography,
+  WifiIcon,
+  WifiLockIcon,
+} from './muiImports'
+
 import { LineBreak, networkConnect } from '../utils/utils'
 
 const modalStyle = {
@@ -41,17 +49,11 @@ export default function WifiMenu(props) {
   const [requiresPassword, setRequiresPassword] = useState(false)
   const [connectedNetwork, setConnectedNetwork] = useState(null)
 
-  const updateConnectedNetwork = () => {
-    fetch('/connectedNetwork')
-      .then((response) => response.json())
-      .then((network) => {
-        setConnectedNetwork(network.network)
-      })
-  }
-
-  useLayoutEffect(() => {
-    updateConnectedNetwork()
-  }, [])
+  // fetch('/connectedNetwork')
+  //     .then((response) => response.json())
+  //     .then((network) => {
+  //         setConnectedNetwork(network.ssid);
+  //     })
 
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -62,37 +64,35 @@ export default function WifiMenu(props) {
   }
 
   const [wifiNetworks, setWifiNetworks] = useState([])
-  useLayoutEffect(() => {
-    fetch('/networks')
-      .then((response) => response.json())
-      .then((networks) => {
-        setWifiNetworks(
-          networks.map((network) => {
-            return (
-              <>
-                <MenuItem
-                  onClick={function () {
-                    setSelectedWifi(network.ssid)
-                    setRequiresPassword(network.requiresPasskey)
-                    setWifiModalOpen(true)
-                    handleClose()
-                  }}
-                >
-                  <WifiConnection
-                    ssid={network.ssid}
-                    locked={network.requiresPasskey}
-                  />
-                </MenuItem>
-              </>
-            )
-          })
-        )
-      })
-  }, [])
+  fetch('/networks')
+    .then((response) => response.json())
+    .then((networks) => {
+      setWifiNetworks(
+        networks.map((network) => {
+          return (
+            <>
+              <MenuItem
+                onClick={function () {
+                  setSelectedWifi(network.ssid)
+                  setRequiresPassword(network.requiresPasskey)
+                  setWifiModalOpen(true)
+                  handleClose()
+                }}
+              >
+                <WifiConnection
+                  ssid={network.ssid}
+                  locked={network.requiresPasskey}
+                />
+              </MenuItem>
+            </>
+          )
+        })
+      )
+    })
 
   return (
     <div>
-      <Typography>Connected Network: {connectedNetwork}</Typography>
+      {/* <Typography>Connected Network: {connectedNetwork}</Typography> */}
       <IconButton
         id="wifi-menu-button"
         aria-controls={open ? 'basic-menu' : undefined}
@@ -156,16 +156,6 @@ export default function WifiMenu(props) {
                 networkConnect(selectedWifi, passwordField)
                 setPasswordField(null)
                 setWifiModalOpen(false)
-
-                // TODO: Switch to websocket for wifi
-                let numTries = 5
-                let interval = setInterval(() => {
-                  updateConnectedNetwork()
-                  numTries--
-                  if (connectedNetwork === selectedWifi || numTries === 0) {
-                    clearInterval(interval)
-                  }
-                }, 2000)
               }}
             >
               Connect

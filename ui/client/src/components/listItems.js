@@ -1,13 +1,15 @@
 import * as React from 'react'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemText from '@mui/material/ListItemText'
-import ListSubheader from '@mui/material/ListSubheader'
-import VideoCameraBackOutlinedIcon from '@mui/icons-material/VideoCameraBackOutlined'
-import LightbulbIcon from '@mui/icons-material/Lightbulb'
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
-import SignalWifi0BarOutlinedIcon from '@mui/icons-material/SignalWifi0BarOutlined'
-import StorageOutlinedIcon from '@mui/icons-material/StorageOutlined'
+import {
+  LightbulbIcon,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader,
+  SettingsOutlinedIcon,
+  SignalWifi0BarOutlinedIcon,
+  StorageOutlinedIcon,
+  VideoCameraBackOutlinedIcon,
+} from './muiImports'
 
 export const mainListItems = (
   <React.Fragment>

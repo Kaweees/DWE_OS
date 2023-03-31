@@ -1,46 +1,52 @@
 import * as React from 'react'
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles'
-import MuiAppBar from '@mui/material/AppBar'
-import Toolbar from '@mui/material/Toolbar'
-import IconButton from '@mui/material/IconButton'
-import MenuIcon from '@mui/icons-material/Menu'
-import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew'
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
-import Brightness4Icon from '@mui/icons-material/Brightness4'
-import Brightness7Icon from '@mui/icons-material/Brightness7'
-import RestartAltIcon from '@mui/icons-material/RestartAlt'
-import MuiDrawer from '@mui/material/Drawer'
-import List from '@mui/material/List'
-import Box from '@mui/system/Box'
+
+import {
+  Box,
+  Brightness4Icon,
+  Brightness7Icon,
+  ChevronLeftIcon,
+  Container,
+  createTheme,
+  CssBaseline,
+  IconButton,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader,
+  MenuIcon,
+  MuiAppBar,
+  MuiDrawer,
+  PowerSettingsNewIcon,
+  RestartAltIcon,
+  styled,
+  ThemeProvider,
+  Toolbar,
+} from './muiImports'
+
+import { lightTheme, darkTheme } from '../themes'
 import { mainListItems, secondaryListItems } from './listItems'
 import DWELogo_white from '../images/DWELogo_white.svg'
-import { Grid, Typography, Divider } from '@mui/material'
-import WifiMenu from './WifiMenu'
-import CssBaseline from '@mui/material/CssBaseline'
-import ListSubheader from '@mui/material/ListSubheader'
-import { lightTheme, darkTheme } from '../themes'
 import DevicesContainer from './DevicesContainer'
 import packageBackend from '../package.backend.json'
-import Container from '@mui/material/Container'
-import { makePostRequest } from '../utils/utils'
+import makePostRequest from '../utils/utils'
 import DeviceCard from './DeviceCard'
-import ListItemButton from '@mui/material/ListItemButton'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemText from '@mui/material/ListItemText'
-
-import { io } from 'socket.io-client'
+import WifiMenu from './WifiMenu'
+import io from 'socket.io-client'
 
 const drawerWidth = 240
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
+  zIndex: theme.zIndex.drawer + 1, // Setting the z-index of the app bar to be above the drawer
   transition: theme.transitions.create(['width', 'margin'], {
+    // Creating a transition effect for the app bar
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
+    // If the drawer is open, update the width and margin of the app bar
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(['width', 'margin'], {
@@ -54,15 +60,18 @@ const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
   '& .MuiDrawer-paper': {
+    // Styling the paper element inside the drawer
     position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
     transition: theme.transitions.create('width', {
+      // Creating a transition effect for the drawer
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
     boxSizing: 'border-box',
     ...(!open && {
+      // If the drawer is closed, update the width and margin of the paper element
       overflowX: 'hidden',
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
