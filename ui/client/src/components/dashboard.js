@@ -248,18 +248,25 @@ export default function Dashboard(props) {
                 sx={{ mx: 3 }}
                 style={{ backgroundColor: 'white', height: 40, width: 3 }}
               />
-              <Typography
-                component="h1"
-                variant="h6"
-                color="inherit"
-                noWrap
-              ></Typography>
-              <Typography
-                component="h1"
-                variant="h6"
-                color="inherit"
-                noWrap
-              ></Typography>
+              <Typography component="h1" variant="h6" color="inherit" noWrap>
+                Stereo
+              </Typography>
+              <Divider
+                orientation="vertical"
+                sx={{ mx: 3 }}
+                style={{ backgroundColor: 'white', height: 40, width: 3 }}
+              />
+              <Typography component="h1" variant="h6" color="inherit" noWrap>
+                ML/AI
+              </Typography>
+              <Divider
+                orientation="vertical"
+                sx={{ mx: 3 }}
+                style={{ backgroundColor: 'white', height: 40, width: 3 }}
+              />
+              <Typography component="h1" variant="h6" color="inherit" noWrap>
+                Simulation
+              </Typography>
             </Box>
             <Grid justifyContent="flex-end">
               <WifiMenu />
