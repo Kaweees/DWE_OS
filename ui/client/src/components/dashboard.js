@@ -1,5 +1,5 @@
-import * as React from 'react'
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles'
+import React, { useState, useEffect } from 'react'
+import { styled, ThemeProvider } from '@mui/material/styles'
 import MuiAppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
@@ -27,7 +27,6 @@ import DeviceCard from './DeviceCard'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-
 import { io } from 'socket.io-client'
 
 const drawerWidth = 240
@@ -76,25 +75,19 @@ const Drawer = styled(MuiDrawer, {
   },
 }))
 
-const mdTheme = createTheme()
-
 export default function Dashboard(props) {
-  const [open, setOpen] = React.useState(false)
-  const [theme, setTheme] = React.useState(
+  const [open, setOpen] = useState(false)
+  const [theme, setTheme] = useState(
     localStorage.getItem('theme') == 'dark' ? darkTheme : lightTheme
   )
   const toggleTheme = () => {
-    if (theme.palette.mode == 'dark') {
-      setTheme(lightTheme)
-      localStorage.setItem('theme', 'light')
-    } else {
-      setTheme(darkTheme)
-      localStorage.setItem('theme', 'dark')
-    }
+    const newTheme = theme.palette.mode === 'dark' ? lightTheme : darkTheme
+    setTheme(newTheme)
+    localStorage.setItem('theme', newTheme.palette.mode)
   }
-  const [exploreHD_cards, setExploreHD_cards] = React.useState([])
-  const [other_cards, setOther_cards] = React.useState([])
-  const [socket, setSocket] = React.useState(io())
+  const [exploreHD_cards, setExploreHD_cards] = useState([])
+  const [other_cards, setOther_cards] = useState([])
+  const [socket, setSocket] = useState(io())
   console.log('socket', socket)
   const toggleDrawer = () => {
     setOpen(!open)
@@ -139,7 +132,7 @@ export default function Dashboard(props) {
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Add event listeners to handle device connection status updates
     socket.on('connect', () => {
       console.log('connect')
@@ -169,39 +162,14 @@ export default function Dashboard(props) {
         removeDevice(device)
       }
     })
-    // socket.on('deviceConnected', (device) => {
-    //   console.log('deviceConnected', device)
-    //   addCard(device)
-    // })
-    // socket.on('deviceDisconnected', (device) => {
-    //   console.log('deviceDisconnected', device)
-    //   removeDevice(device)
-    // })
-    // socket.on('deviceReconnected', (device) => {
-    //   console.log('deviceReconnected', device)
-    //   removeDevice(device)
-    //   addCard(device)
-    // })
-    // // Get all devices
-    // socket.emit('getDevices', {}, (devices) => {
-    //   console.log('getDevices', devices)
-    //   addDevices(devices)
-    // })
-    // // Get current theme
-    // setTheme(localStorage.getItem('theme') == 'dark' ? darkTheme : lightTheme)
   }, [])
 
   const updateTheme = (e) => {
     localStorage.setItem('theme', e.target.checked ? 'dark' : 'light')
     setTheme(e.target.checked ? darkTheme : lightTheme)
-    // this.setState({
-    //   theme: this.state.theme == lightTheme ? darkTheme : lightTheme,
-    // })
   }
   const resetSettings = () => {
     makePostRequest('/resetSettings', {}, () => window.location.reload())
-    // makePostRequest('resetSettings', {})
-    // this.refreshCards()
   }
 
   return (
@@ -260,6 +228,25 @@ export default function Dashboard(props) {
                 color="inherit"
                 noWrap
               ></Typography>
+              <Typography component="h1" variant="h6" color="inherit" noWrap>
+                Stereo
+              </Typography>
+              <Divider
+                orientation="vertical"
+                sx={{ mx: 3 }}
+                style={{ backgroundColor: 'white', height: 40, width: 3 }}
+              />
+              <Typography component="h1" variant="h6" color="inherit" noWrap>
+                ML/AI
+              </Typography>
+              <Divider
+                orientation="vertical"
+                sx={{ mx: 3 }}
+                style={{ backgroundColor: 'white', height: 40, width: 3 }}
+              />
+              <Typography component="h1" variant="h6" color="inherit" noWrap>
+                Simulation
+              </Typography>
             </Box>
             <Grid justifyContent="flex-end">
               <WifiMenu />
