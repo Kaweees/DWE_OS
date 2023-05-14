@@ -1,8 +1,11 @@
+// react-router router components
+import { Route } from 'react-router-dom'
+
 // routes to different pages
 import routes from './routes'
 
 // Filter the routes into two categories: Devices and Communications
-const getRoutes = (routes) => {
+const GetRoutes = (routes) => {
   const devicesRoutes = routes.filter((route) => route.category === 'Devices')
   const communicationsRoutes = routes.filter(
     (route) => route.category === 'Communications'
@@ -71,4 +74,4 @@ const getRoutes = (routes) => {
   )
 }
 
-export default getRoutes(routes)
+export default GetRoutes(routes)
