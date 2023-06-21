@@ -1,11 +1,11 @@
-import './main.css'
-import { createTheme } from '@mui/material/styles'
-import { grey } from '@mui/material/colors'
+import "./main.css";
+import { createTheme } from "@mui/material/styles";
+import { grey } from "@mui/material/colors";
 // import { red } from '@mui/material/colors';
 
 export const lightTheme = createTheme({
   typography: {
-    fontFamily: 'HelveticaNeueLight, sans-serif',
+    fontFamily: "HelveticaNeueLight, sans-serif",
     fontWeightRegular: 400,
     fontWeightItalic: 400,
   },
@@ -13,15 +13,15 @@ export const lightTheme = createTheme({
     MuiTypography: {
       styleOverrides: {
         root: {
-          letterSpacing: '0.05em',
+          letterSpacing: "0.05em",
         },
       },
     },
     MuiCssBaseline: {
-      '@global': {
-        '@font-face': {
-          fontFamily: 'HelveticaNeueLight',
-          fontStyle: 'normal',
+      "@global": {
+        "@font-face": {
+          fontFamily: "HelveticaNeueLight",
+          fontStyle: "normal",
           fontWeight: 400,
           src: `
           local('HelveticaNeueLight'),
@@ -38,15 +38,15 @@ export const lightTheme = createTheme({
       dark: grey[300],
     },
     primary: {
-      dark: '#092037',
-      main: '#15314d',
+      dark: "#092037",
+      main: "#15314d",
     },
   },
-})
+});
 
 export const darkTheme = createTheme({
   typography: {
-    fontFamily: 'HelveticaNeueLight, sans-serif',
+    fontFamily: "HelveticaNeueLight, sans-serif",
     fontWeightRegular: 400,
     fontWeightItalic: 400,
   },
@@ -54,15 +54,15 @@ export const darkTheme = createTheme({
     MuiTypography: {
       styleOverrides: {
         root: {
-          letterSpacing: '0.05em',
+          letterSpacing: "0.05em",
         },
       },
     },
     MuiCssBaseline: {
-      '@global': {
-        '@font-face': {
-          fontFamily: 'HelveticaNeueLight',
-          fontStyle: 'normal',
+      "@global": {
+        "@font-face": {
+          fontFamily: "HelveticaNeueLight",
+          fontStyle: "normal",
           fontWeight: 400,
           src: `
           local('HelveticaNeueLight'),
@@ -74,9 +74,9 @@ export const darkTheme = createTheme({
     },
   },
   palette: {
-    mode: 'dark',
+    mode: "dark",
   },
-})
+});
 
 // export const roboto = Roboto({
 //   weight: ['300', '400', '500', '700'],

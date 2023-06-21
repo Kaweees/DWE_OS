@@ -1,12 +1,12 @@
-import * as React from 'react'
+import * as React from "react";
 
-import './main.css'
+import "./main.css";
 
-import Dashboard from './components/dashboard'
+import Dashboard from "./components/dashboard";
 
 export default class App extends React.Component {
   render() {
-    return <Dashboard />
+    return <Dashboard />;
     // return Dashboard({
     //   props: this.props,
     //   state: this.state,
